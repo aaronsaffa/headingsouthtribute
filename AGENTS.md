@@ -12,9 +12,9 @@
 
 - Band: Heading South. Tribute artist: Zach Bryan.
 - The client's immediate request is a placeholder using the supplied photograph and the copy: "Heading South: A Tribute to Zach Bryan" and "COMING IN 2027".
-- Source image: `HeadingSouth_Background.jpg`, supplied by the client as public domain. Its original source/license reference is still to be recorded; do not invent one.
+- Source image: `HeadingSouth_Background.jpg`, supplied by the client as public domain. Original source and public-domain statement are recorded in `docs/IMAGE-SOURCE.md`.
 - Supplied Instagram: https://www.instagram.com/headingsouthtribute/
-- The user supplied an Instagram description mentioning rehearsals and a Long Beach, CA debut on February 20, 2027. Confirm inclusion and show details before publishing an event listing.
+- Approved first-page scope: a polished coming-soon page with the client's requested wording, an Instagram link, and the Long Beach, CA debut on February 20, 2027. Do not include booking contact information or invent a venue, tickets, or show time.
 - The eventual site's goals are bookings and show promotion. Confirm actual needs for shows, videos, biography, photos, and contact details before adding those sections.
 - Never invent business claims, testimonials, show dates, venues, ticket links, booking contacts, media, or artist endorsements.
 - Proposed visual direction, pending client review: sunset photography, warm ivory type, and restrained Americana concert-poster typography. Do not present a text treatment as a supplied band logo.
@@ -22,7 +22,7 @@
 
 ## Preview and launch
 
-- Provide a remotely accessible review preview once the initial page scope is confirmed and the page is implemented.
+- Provide a remotely accessible review preview. The user is configuring Cloudflare Pages for this repository: branch `main`, framework None, build command `exit 0`, output directory `public`.
 - Preview publication is separate from production launch. Clearly identify the review URL and its access requirements.
 - Do not change DNS, connect the production domain, or launch the public site without explicit user approval.
 - Do not add analytics, tracking, newsletter subscriptions, or a contact-form service without an agreed requirement.
