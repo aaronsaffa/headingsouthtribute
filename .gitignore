@@ -1,0 +1,16 @@
+# Secrets and local configuration
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+.aws/
+
+# Dependencies and local tools
+node_modules/
+.DS_Store
+Thumbs.db
+*.log
+
+# Generated review artifacts
+.artifacts/
