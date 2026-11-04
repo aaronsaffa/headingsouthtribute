@@ -52,3 +52,11 @@
 @media(prefers-reduced-motion:reduce){
  ::view-transition-group(*),::view-transition-old(*),::view-transition-new(*){animation-duration:.001s!important}
 }
+/* Desktop navigation is a separate, stationary snapshot instead of fading
+   with the page content. Mobile keeps its independently animated drawer. */
+@media(min-width:701px){
+ header{view-transition-name:site-header}
+ ::view-transition-group(site-header){animation:none;z-index:2}
+ ::view-transition-old(site-header){display:none}
+ ::view-transition-new(site-header){animation:none;opacity:1;mix-blend-mode:normal}
+}
