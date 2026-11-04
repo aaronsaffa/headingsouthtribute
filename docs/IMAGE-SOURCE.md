@@ -17,3 +17,6 @@ The supplied road image replaces the original sunset on the website. The black H
 - `ZB_logo.pdf`: source of `public/assets/heading-south.svg`.
 
 The new image's licensing was not independently established; the original image's public-domain statement applies only to the original image.
+
+
+Client correction: use the plain Heading South wordmark from the third artwork row in ZB_logo.pdf. The arrow and small tribute line from the bottom lockup are omitted.
