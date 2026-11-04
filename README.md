@@ -54,3 +54,7 @@ Revision verification: visually reviewed at 1280 x 720 and 390 x 844; tested Eve
 ## Show manager
 
 The protected show and venue manager is at /admin/. Events and the homepage read the shared schedule. See docs/SHOW-MANAGER.md for the client workflow and separate Cloudflare preview/production setup. The database binding and encrypted manager secret must be configured before live saving works. Run node --test tests/events.test.js for API regression checks.
+
+## Mobile presentation
+
+The approved mobile treatment uses a light wordmark over a dark photo gradient. A fixed hamburger header expands into vertical navigation with a 360 ms transition; reduced-motion preferences disable animation. The background uses a stable large viewport height to avoid rescaling as mobile browser toolbars collapse. Actual iOS toolbar and rubber-band behavior requires device verification.
