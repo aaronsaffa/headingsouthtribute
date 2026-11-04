@@ -41,3 +41,14 @@
  .home .logo{filter:brightness(0) invert(1)}
  .home .description{font-size:17px;font-weight:normal;line-height:1.5;text-shadow:0 1px 8px #0008}
 }
+
+/* Keep the shared photograph painted across same-origin document changes. */
+@view-transition{navigation:auto}
+.landscape{view-transition-name:site-landscape}
+::view-transition-group(site-landscape){animation:none}
+::view-transition-old(site-landscape),::view-transition-new(site-landscape){animation:none;mix-blend-mode:normal}
+::view-transition-group(root){animation-duration:.14s}
+::view-transition-old(root),::view-transition-new(root){animation-duration:.14s}
+@media(prefers-reduced-motion:reduce){
+ ::view-transition-group(*),::view-transition-old(*),::view-transition-new(*){animation-duration:.001s!important}
+}

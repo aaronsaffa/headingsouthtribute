@@ -15,7 +15,9 @@ toggle.addEventListener('click', () => setOpen(toggle.getAttribute('aria-expande
 header.addEventListener('keydown', event => {
   if (event.key === 'Escape' && header.classList.contains('menu-open')) setOpen(false, true);
 });
-panel.addEventListener('click', event => { if (event.target.closest('a')) setOpen(false); });
+// Keep the current page intact until native navigation replaces it.
+// Closing first reveals the outgoing page while the next document loads.
+window.addEventListener('pageshow', () => setOpen(false));
 document.addEventListener('click', event => { if (!header.contains(event.target)) setOpen(false); });
 header.addEventListener('focusout', event => {
   if (event.relatedTarget && !header.contains(event.relatedTarget)) setOpen(false);
