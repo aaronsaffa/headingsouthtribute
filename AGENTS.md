@@ -2,7 +2,7 @@
 
 ## Scope and repository
 
-- Work only in `D:\GoogleDrive\Sites\headingsouthtribute` and its repository, `https://github.com/aaronsaffa/headingsouthtribute.git`.
+- Work only in `C:\Users\Admin\GitHub\headingsouthtribute` and its repository, `https://github.com/aaronsaffa/headingsouthtribute.git`.
 - This project is separate from Agoura Accounting. Do not read, reuse, or modify that project's files, configuration, credentials, or hosting.
 - Use plain HTML, CSS, and JavaScript with minimal dependencies unless requirements justify more.
 - Make useful Git commits. Do not overwrite unrelated user changes.

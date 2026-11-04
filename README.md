@@ -42,3 +42,11 @@ Use the `pages.dev` address for review. Cloudflare's "production branch" means i
 The page, stylesheet, image, favicon, and robots.txt returned HTTP 200 locally. `git diff --check` passed. Browser automation access to Brave was denied, so desktop and mobile visual verification remains outstanding. Responsive breakpoints, fluid typography, visible keyboard focus, and reduced-motion handling are implemented.
 
 See [AGENTS.md](AGENTS.md) for project rules.
+
+## November 2026 client revision
+
+The road-photo concept and supplied transparent vector lockup are implemented on `codex/client-road-concept`. Navigation includes Home, About, Events, Music, Gallery, Contact, and Follow. About, Music, Gallery, and Contact have coming-soon pages pending client content. Events contains only the confirmed February 20, 2027 Long Beach debut. Follow links to Instagram; Facebook is marked coming soon pending the URL.
+
+No production domain or DNS changes are part of this revision. Deploy this feature branch to Cloudflare Pages for review, using the existing `public` output configuration.
+
+Revision verification: visually reviewed at 1280 x 720 and 390 x 844; tested Events and Follow navigation; checked all seven pages for missing local links/assets and unique active navigation. The vector SVG parses successfully.
