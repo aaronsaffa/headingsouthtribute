@@ -27,9 +27,11 @@
  .menu-open .menu-toggle span:nth-child(2){opacity:0}
  .menu-open .menu-toggle span:nth-child(3){transform:translateY(-6px) rotate(-45deg)}
  .nav-panel{padding-bottom:16px}
- .nav-ready .nav-panel{display:grid;grid-template-rows:0fr;padding-bottom:0;opacity:0;visibility:hidden;transition:grid-template-rows .36s cubic-bezier(.22,1,.36,1),opacity .22s ease,visibility 0s linear .36s}
- .nav-ready.menu-open .nav-panel{grid-template-rows:1fr;opacity:1;visibility:visible;transition:grid-template-rows .36s cubic-bezier(.22,1,.36,1),opacity .28s ease,visibility 0s}
- nav{display:flex;flex-direction:column;align-items:stretch;gap:0;padding:0;min-height:0;max-height:calc(100svh - 64px - env(safe-area-inset-top));overflow-y:auto}.nav-ready nav{transform:translateY(-8px);transition:transform .36s cubic-bezier(.22,1,.36,1)}.nav-ready.menu-open nav{transform:translateY(0)}
+ /* The panel always has its final layout. Only its clipping edge animates. */
+ .nav-ready .nav-panel{position:absolute;top:100%;left:0;right:0;padding:0 max(22px,env(safe-area-inset-right)) 16px max(22px,env(safe-area-inset-left));max-height:calc(100svh - 64px - env(safe-area-inset-top));overflow-y:auto;background:#211713;border-bottom:1px solid #fff1d824;clip-path:inset(0 0 100% 0);visibility:hidden;transition:clip-path .32s cubic-bezier(.22,1,.36,1),visibility 0s linear .32s}
+ .nav-ready.menu-open .nav-panel{clip-path:inset(0 0 0 0);visibility:visible;transition:clip-path .32s cubic-bezier(.22,1,.36,1),visibility 0s}
+ nav{display:flex;flex-direction:column;flex-wrap:nowrap;align-items:stretch;justify-content:flex-start;gap:0;padding:0;min-height:0}
+ nav a{flex-shrink:0}
  nav a{font-size:13px;letter-spacing:.16em;padding:16px 4px;border-bottom:1px solid #fff1d81f}
  nav a[aria-current]{color:var(--amber);border-color:#fff1d81f}
  .home main{padding-top:32px}

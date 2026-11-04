@@ -57,4 +57,4 @@ The protected show and venue manager is at /admin/. Events and the homepage read
 
 ## Mobile presentation
 
-The approved mobile treatment uses a light wordmark over a dark photo gradient. A fixed hamburger header expands into vertical navigation with a 360 ms transition; reduced-motion preferences disable animation. The background uses a stable large viewport height to avoid rescaling as mobile browser toolbars collapse. Actual iOS toolbar and rubber-band behavior requires device verification.
+The approved mobile treatment uses a light wordmark over a dark photo gradient. A fixed hamburger header expands into vertical navigation with a 320 ms clipping reveal that keeps links stationary; reduced-motion preferences disable animation. The background uses a stable large viewport height to avoid rescaling as mobile browser toolbars collapse. Actual iOS toolbar and rubber-band behavior requires device verification.
