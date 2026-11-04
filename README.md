@@ -50,3 +50,7 @@ The road-photo concept and supplied transparent vector lockup are implemented on
 No production domain or DNS changes are part of this revision. Deploy this feature branch to Cloudflare Pages for review, using the existing `public` output configuration.
 
 Revision verification: visually reviewed at 1280 x 720 and 390 x 844; tested Events and Follow navigation; checked all seven pages for missing local links/assets and unique active navigation. The vector SVG parses successfully.
+
+## Show manager
+
+The protected show and venue manager is at /admin/. Events and the homepage read the shared schedule. See docs/SHOW-MANAGER.md for the client workflow and separate Cloudflare preview/production setup. The database binding and encrypted manager secret must be configured before live saving works. Run node --test tests/events.test.js for API regression checks.

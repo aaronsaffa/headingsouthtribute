@@ -14,3 +14,7 @@ Thumbs.db
 
 # Generated review artifacts
 .artifacts/
+
+.dev.vars
+.dev.vars.*
+.wrangler/
