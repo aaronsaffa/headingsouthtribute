@@ -1,9 +1,9 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="501" height="72" viewBox="0 0 501 72" role="img" aria-labelledby="title">
 <title id="title">Heading South</title>
 <defs><filter id="soft-ink" x="-5%" y="-15%" width="110%" height="130%" color-interpolation-filters="sRGB">
-<feTurbulence type="fractalNoise" baseFrequency=".24" numOctaves="2" seed="17" result="grain"/>
-<feDisplacementMap in="SourceGraphic" in2="grain" scale="2.8" xChannelSelector="R" yChannelSelector="G"/>
-<feGaussianBlur stdDeviation=".16"/>
+<feTurbulence type="fractalNoise" baseFrequency=".11" numOctaves="1" seed="17" result="grain"/>
+<feDisplacementMap in="SourceGraphic" in2="grain" scale="1.35" xChannelSelector="R" yChannelSelector="G"/>
+<feGaussianBlur stdDeviation=".22"/>
 </filter></defs>
 <g fill="#000" filter="url(#soft-ink)"><g transform="matrix(1,0,0,-1,-18,168.957)">
 <path d="M73.7252 158.3795C68.2032 157.8185 67.5642 157.2605 67.5642 149.6925V113.3585C67.5642 105.8865 68.2832 105.2305 73.5642 104.5775V101.4955H51.2392V104.5775C56.6802 105.1375 57.4012 105.8865 57.4012 113.2635V131.0125H39.4772V113.2635C39.4772 105.6985 40.1172 105.1375 45.3182 104.5775V101.4955H23.1532V104.5775C28.5142 105.1375 29.2342 105.7915 29.2342 113.2635V149.6925C29.2342 157.2605 28.5142 157.8185 22.9132 158.3795V161.4635H45.1572V158.3795C40.1172 157.8185 39.4772 157.2605 39.4772 149.6925V135.6815H57.4012V149.6925C57.4012 157.2605 56.6802 157.8185 51.5592 158.3795V161.4635H73.7252Z"/>
