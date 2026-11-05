@@ -58,3 +58,7 @@ The protected show and venue manager is at /admin/. Events and the homepage read
 ## Mobile presentation
 
 The approved mobile treatment uses a light wordmark over a dark photo gradient. A fixed hamburger header expands into vertical navigation with a 320 ms clipping reveal that keeps links stationary; reduced-motion preferences disable animation. The background uses a stable large viewport height to avoid rescaling as mobile browser toolbars collapse. Actual iOS toolbar and rubber-band behavior requires device verification.
+
+## Approved wallpaper export
+
+The concept branch now uses `public/assets/road-v2-4k.webp` (3840 x 2160, optimized WebP). The approved generated source and explicitly upscaled 4K PNG master are retained in `output/imagegen/`. See `docs/IMAGE-SOURCE.md` for provenance and the distinction between source resolution and upscaled output.

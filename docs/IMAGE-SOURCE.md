@@ -20,3 +20,11 @@ The new image's licensing was not independently established; the original image'
 
 
 Client correction: use the plain Heading South wordmark from the third artwork row in ZB_logo.pdf. The arrow and small tribute line from the bottom lockup are omitted.
+
+## Approved generated road wallpaper - November 4, 2026
+
+The user approved an AI-generated refinement of the supplied road concept, improving the photographic detail and the sign's integration with the scene. The approved generated source is `output/imagegen/heading-south-road-v2.png` (1672 x 941). A later regeneration was not selected.
+
+At the user's explicit request, the approved source was locally upscaled with Lanczos resampling and a negligible center crop to 3840 x 2160. `output/imagegen/heading-south-road-v2-4k-upscaled.png` is an **upscaled 4K master**, not native 4K generated detail. The website serves `public/assets/road-v2-4k.webp`, a quality-85 WebP export at the same dimensions, preloaded consistently on all public pages.
+
+The original client image and previous served derivative remain unchanged. The original photograph's public-domain statement does not establish a license for the supplied road composite or this generated derivative.
