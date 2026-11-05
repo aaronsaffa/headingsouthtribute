@@ -28,3 +28,9 @@ The user approved an AI-generated refinement of the supplied road concept, impro
 At the user's explicit request, the approved source was locally upscaled with Lanczos resampling and a negligible center crop to 3840 x 2160. `output/imagegen/heading-south-road-v2-4k-upscaled.png` is an **upscaled 4K master**, not native 4K generated detail. The website serves `public/assets/road-v2-4k.webp`, a quality-85 WebP export at the same dimensions, preloaded consistently on all public pages.
 
 The original client image and previous served derivative remain unchanged. The original photograph's public-domain statement does not establish a license for the supplied road composite or this generated derivative.
+
+## West light and softened wordmark
+
+The relit revision uses the approved generated wallpaper as the composition reference, with the sun outside the right edge, no horizon hotspot, and matching light on the road and sign. Its generated source is `output/imagegen/heading-south-road-west-light.png`; the concept uses the compressed `public/assets/road-west-light.webp`. The previous 4K master is retained.
+
+`public/assets/heading-south-distressed.svg` retains the supplied Heading South outlines with a light irregular ink edge treatment. The supplied Zach Bryan wordmark PDF was used only as a style reference. The standalone SVG is transparent and contains only the Heading South artwork.

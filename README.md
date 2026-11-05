@@ -61,4 +61,4 @@ The approved mobile treatment uses a light wordmark over a dark photo gradient. 
 
 ## Approved wallpaper export
 
-The concept branch now uses `public/assets/road-v2-4k.webp` (3840 x 2160, optimized WebP). The approved generated source and explicitly upscaled 4K PNG master are retained in `output/imagegen/`. See `docs/IMAGE-SOURCE.md` for provenance and the distinction between source resolution and upscaled output.
+The concept branch uses `public/assets/road-west-light.webp`, a relit revision with the sunset off the right edge. The previous `road-v2-4k.webp` and its upscaled master are retained. The approved generated source and explicitly upscaled 4K PNG master are retained in `output/imagegen/`. See `docs/IMAGE-SOURCE.md` for provenance and the distinction between source resolution and upscaled output.

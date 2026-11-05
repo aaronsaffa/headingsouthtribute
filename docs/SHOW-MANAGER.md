@@ -32,3 +32,11 @@ Create a different D1 database (`heading-south-events-production`) and a differe
 Public Events and the homepage refresh on load, when returning to the tab, and hourly. Until the first database save, they use `public/data/events.json` containing only the approved Long Beach announcement. An explicitly saved empty schedule stays empty. If the API is unavailable, the Events page explains that the last available announcement is being shown.
 
 No credentials or Cloudflare account identifiers are tracked. Configuration reference: https://developers.cloudflare.com/pages/functions/bindings/
+
+## Show history and private notes
+
+The same schedule database retains dated shows after they pass. In the signed-in manager, use **Download past shows (CSV)** to export the saved records before today's Pacific date. The file includes private booking notes, so store it privately. The export does not include unsaved changes. Removing a show removes it from future exports.
+
+Use **Private booking notes (manager only)** for booking contacts and other internal details. Use **Public show details** for visitor-facing information. The public endpoint uses an explicit field allowlist and never includes private notes. Existing records default to blank private notes; no D1 migration is needed. Reload open manager tabs after deploying.
+
+The manager currently edits shows and venues. About, Music, and Gallery are site content and would need a separate editor with approved content and media requirements.

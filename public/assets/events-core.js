@@ -28,10 +28,10 @@ export function validateEvents(events) {
     if (!event || typeof event !== 'object') fail('invalid show.');
     if (!validDate(event.date)) fail('use a valid date in YYYY-MM-DD format.');
     const result = { date: event.date };
-    for (const key of ['venue', 'city', 'notes', 'map_url', 'tickets_url', 'status']) {
+    for (const key of ['venue', 'city', 'notes', 'internal_notes', 'map_url', 'tickets_url', 'status']) {
       if (event[key] !== undefined && typeof event[key] !== 'string') fail(`${key} must be text.`);
       result[key] = (event[key] || '').trim();
-      if (result[key].length > (key === 'notes' ? 2000 : 1000)) fail(`${key} is too long.`);
+      if (result[key].length > (['notes', 'internal_notes'].includes(key) ? 2000 : 1000)) fail(`${key} is too long.`);
     }
     if (!result.city) fail('city is required.');
     result.status ||= 'confirmed';

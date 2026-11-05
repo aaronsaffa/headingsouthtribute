@@ -1,5 +1,10 @@
 import { validateEvents, validateVenues, seedVenues, decodeSchedule } from '../../public/assets/events-core.js';
 
+// Allowlist public fields so future private fields cannot leak through the API.
+function publicEvent({ date, venue, city, notes, map_url, tickets_url, status }) {
+  return { date, venue, city, notes, map_url, tickets_url, status };
+}
+
 function json(value, status = 200) {
   return Response.json(value, { status, headers: {
     'Cache-Control': 'no-store', 'X-Content-Type-Options': 'nosniff'
@@ -30,7 +35,7 @@ export async function onRequest({ request, env }) {
       // Public reads also tolerate the legacy array format without generating venue IDs.
       const stored = JSON.parse(row.events);
       const events = validateEvents(Array.isArray(stored) ? stored : stored.events);
-      return json({ events: admin ? events : events.filter(event => event.status === 'confirmed'),
+      return json({ events: admin ? events : events.filter(event => event.status === 'confirmed').map(publicEvent),
         revision: row.revision, ...(admin ? { venues: decodeSchedule(row.events).venues } : {}) });
     }
     const origin = request.headers.get('Origin');

@@ -34,7 +34,7 @@ function render(events) {
   }
   const debut = document.querySelector('.debut');
   if (debut) {
-    debut.replaceChildren(text('h2', upcoming.length ? 'Next show' : 'On the horizon'));
+    debut.replaceChildren(text('h2', upcoming[0]?.date === '2027-02-20' && upcoming[0]?.city.toLowerCase().startsWith('long beach') ? 'Debut show!' : upcoming.length ? 'Next show' : 'On the horizon'));
     debut.firstChild.id = 'debut-title';
     if (upcoming.length) {
       const event = upcoming[0], paragraph = document.createElement('p');

@@ -133,3 +133,38 @@ test('Heading South debut can be saved without a venue and does not create an in
     assert(data.events[0].venue === '' && data.venues.length === 0);
   } finally { storage.db.close(); }
 });
+
+test('private booking notes persist only in authenticated reads, including for confirmed shows', async () => {
+  const storage = database();
+  const env = { EVENTS_DB: storage, ADMIN_TOKEN: 'p'.repeat(64) };
+  const root = 'https://test.local/api/events';
+  const auth = { Authorization: `Bearer ${env.ADMIN_TOKEN}`, 'Content-Type': 'application/json' };
+  const request = (url, options) => onRequest({ env, request: new Request(url, options) });
+  try {
+    const save = await request(root, { method: 'PUT', headers: auth, body: JSON.stringify({ revision: 0,
+      events: [show({ notes: 'Public details', internal_notes: 'Private booking test value' })] }) });
+    assert(save.status === 200);
+    const publicResponse = await request(root);
+    const { events } = await publicResponse.json();
+    assert(events[0].notes === 'Public details');
+    assert(!Object.hasOwn(events[0], 'internal_notes'));
+    assert((await request(`${root}?admin=1`)).status === 401);
+    const privateResponse = await request(`${root}?admin=1`, { headers: auth });
+    assert(privateResponse.headers.get('Cache-Control') === 'no-store');
+    assert((await privateResponse.json()).events[0].internal_notes === 'Private booking test value');
+  } finally { storage.db.close(); }
+});
+
+test('CSV export includes saved past shows, escapes spreadsheet formulas and omits today and future shows', async () => {
+  const { pastShowsCsv } = await import('../public/admin/archive.js');
+  const now = new Date('2027-03-01T08:00:00Z');
+  const csv = pastShowsCsv([
+    show({ date: '2027-02-20', internal_notes: ' =HYPERLINK("https://example.test")' }),
+    show({ date: '2027-03-01', venue: 'Today test venue' }),
+    show({ date: '2027-03-02', venue: 'Future test venue' })
+  ], now);
+  assert(csv.includes('Private booking notes'));
+  assert(csv.includes('2027-02-20') && !csv.includes('Today test venue') && !csv.includes('Future test venue'));
+  assert(csv.includes(`' =HYPERLINK(""https://example.test"")`));
+  assert(pastShowsCsv([], now) === '');
+});

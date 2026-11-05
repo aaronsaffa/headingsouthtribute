@@ -1,7 +1,9 @@
 import { STATUSES, todayInZone, validateEvents, validateVenues, seedVenues, venueKey } from '../assets/events-core.js';
 
+import { pastShowsCsv } from './archive.js';
+
 const $ = id => document.getElementById(id);
-let key = '', revision = 0, dirty = false, busy = false, venues = [];
+let key = '', revision = 0, dirty = false, busy = false, venues = [], savedEvents = [];
 const message = value => { $('message').textContent = value; };
 const changed = () => { dirty = true; message('Unsaved changes. Select Save schedule to save shows and venues.'); };
 
@@ -84,7 +86,8 @@ function addShow(event = { date: todayInZone(), status: 'draft' }) {
     ['date', 'Show date', 'date', true], ['status', 'Visibility', 'select', true],
     ['venue', 'Venue / event name (optional)', 'text', false], ['city', 'City, state', 'text', true],
     ['map_url', 'Map link (optional)', 'url', false], ['tickets_url', 'Tickets / venue link (optional)', 'url', false],
-    ['notes', 'Show details (optional)', 'textarea', false]
+    ['notes', 'Public show details (optional)', 'textarea', false],
+    ['internal_notes', 'Private booking notes (manager only)', 'textarea', false]
   ]) {
     const label = document.createElement('label'); label.textContent = title;
     if (type === 'textarea') label.className = 'full';
@@ -93,7 +96,7 @@ function addShow(event = { date: todayInZone(), status: 'draft' }) {
     if (input.tagName === 'INPUT') input.type = type;
     if (type === 'select') for (const status of STATUSES) input.append(option(status, status[0].toUpperCase() + status.slice(1)));
     input.required = required;
-    if (type !== 'select') input.maxLength = name === 'notes' ? 2000 : 1000;
+    if (type !== 'select') input.maxLength = type === 'textarea' ? 2000 : 1000;
     input.value = event[name] || '';
     input.addEventListener('input', () => {
       if (['venue', 'city', 'map_url'].includes(name) && picker.value !== 'new') picker.value = 'snapshot';
@@ -135,6 +138,7 @@ async function load() {
     events = await response.json();
   }
   events = validateEvents(events);
+  savedEvents = result.events === null ? [] : events;
   venues = result.venues === null ? seedVenues(events) : validateVenues(result.venues);
   revision = result.revision;
   $('events').replaceChildren();
@@ -185,7 +189,7 @@ $('save').addEventListener('click', async () => {
       !confirm('This schedule has no upcoming confirmed shows. Save it anyway?')) return;
     setBusy(true); message('Saving…');
     const result = await api('PUT', { events, venues: catalog, revision });
-    revision = result.revision; venues = catalog;
+    revision = result.revision; venues = catalog; savedEvents = events;
     // Keep newly saved venues from being added again if they are later removed from the catalog.
     for (const card of cards) {
       const picker = card.querySelector('[data-venue-picker]');
@@ -199,6 +203,19 @@ $('save').addEventListener('click', async () => {
   } catch (error) { message(error.message); }
   finally { setBusy(false); }
 });
+$('download-past').addEventListener('click', () => {
+  const csv = pastShowsCsv(savedEvents);
+  if (!csv) { message('There are no saved past shows to download yet.'); return; }
+  const url = URL.createObjectURL(new Blob([csv], { type: 'text/csv;charset=utf-8' }));
+  const download = Object.assign(document.createElement('a'), {
+    href: url, download: `heading-south-past-shows-${todayInZone()}.csv`
+  });
+  document.body.append(download);
+  download.click();
+  download.remove();
+  setTimeout(() => URL.revokeObjectURL(url), 30000);
+  message('Past shows downloaded. The file includes private booking notes.');
+});
 $('reload').addEventListener('click', async () => {
   if (dirty && !confirm('Discard your unsaved show and venue edits and reload?')) return;
   setBusy(true);
@@ -207,7 +224,7 @@ $('reload').addEventListener('click', async () => {
 });
 $('logout').addEventListener('click', () => {
   if (dirty && !confirm('Sign out and discard your unsaved edits?')) return;
-  key = ''; revision = 0; dirty = false; venues = [];
+  key = ''; revision = 0; dirty = false; venues = []; savedEvents = [];
   $('events').replaceChildren(); $('venue-list').replaceChildren(); $('venue-count').textContent = ''; $('key').value = '';
   $('manager').hidden = true; $('login-panel').hidden = false;
   message('Signed out.'); $('key').focus();
