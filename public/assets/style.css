@@ -60,3 +60,14 @@
  ::view-transition-old(site-header){display:none}
  ::view-transition-new(site-header){animation:none;opacity:1;mix-blend-mode:normal}
 }
+
+@media (min-width: 701px) {
+  .home .intro {
+    width: min(58%, 765px);
+    text-align: right;
+  }
+
+  .home .description {
+    margin-inline-end: 0.6em;
+  }
+}
