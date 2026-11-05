@@ -31,7 +31,7 @@ button:disabled { opacity: .5; cursor: wait; }
 footer { padding: 40px 0; color: #aaa69a; font-size: .65rem; letter-spacing: .2em; }
 [hidden] { display: none !important; }
 @media (max-width: 600px) { .grid { grid-template-columns: minmax(0, 1fr); } section, article { padding: 18px; } .actions button { width: 100%; } }
-#venue-manager { margin-top: 24px; }
+#past-shows, #venue-manager { margin-top: 24px; }
 summary { cursor: pointer; color: #e0ad66; font-weight: 700; }
 select { min-width: 0; max-width: 100%; }
 

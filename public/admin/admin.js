@@ -38,8 +38,21 @@ function populatePicker(card) {
   picker.value = ['new', 'pending'].includes(selected) || venues.some(venue => venue.id === selected) ? selected : 'snapshot';
 }
 
+function showCards() {
+  return [...$('events').children, ...$('past-events').children];
+}
+
+function groupShowCards() {
+  const today = todayInZone();
+  for (const card of showCards()) {
+    const date = card.querySelector('[name=date]').value;
+    const group = $(date && date < today ? 'past-events' : 'events');
+    if (card.parentElement !== group) group.append(card);
+  }
+}
+
 function refreshPickers() {
-  for (const card of $('events').children) populatePicker(card);
+  for (const card of showCards()) populatePicker(card);
 }
 
 function renderVenues() {
@@ -54,7 +67,7 @@ function renderVenues() {
       input.type = type; input.value = venue[field]; input.maxLength = 1000; input.required = field !== 'map_url';
       input.addEventListener('input', () => {
         if (field === 'map_url') {
-          for (const show of $('events').children) {
+          for (const show of showCards()) {
             const location = Object.fromEntries(['venue', 'city'].map(name => [name, show.querySelector(`[name="${name}"]`).value]));
             if (venueKey(location) === venueKey(venue)) show.querySelector('[name="map_url"]').value = input.value;
           }
@@ -142,7 +155,10 @@ async function load() {
   venues = result.venues === null ? seedVenues(events) : validateVenues(result.venues);
   revision = result.revision;
   $('events').replaceChildren();
+  $('past-events').replaceChildren();
+  $('past-shows').open = false;
   events.sort((a, b) => a.date.localeCompare(b.date)).forEach(addShow);
+  groupShowCards();
   renderVenues(); dirty = false;
   $('login-panel').hidden = true; $('manager').hidden = false;
   message(result.events === null ? 'Starting schedule loaded. Save it to activate the show manager.' : 'Saved schedule and venues loaded.');
@@ -172,7 +188,7 @@ $('save').addEventListener('click', async () => {
     }
   }
   try {
-    const cards = [...$('events').children];
+    const cards = showCards();
     const events = validateEvents(cards.map(card => Object.fromEntries(
       [...card.querySelectorAll('[name]')].map(field => [field.name, field.value])
     )));
@@ -198,6 +214,7 @@ $('save').addEventListener('click', async () => {
       populatePicker(card);
       if (picker.value === 'new') picker.value = match?.id || 'snapshot';
     }
+    groupShowCards();
     renderVenues(); dirty = false;
     message('Schedule and venues saved. Your shows are ready on the website.');
   } catch (error) { message(error.message); }
@@ -225,7 +242,7 @@ $('reload').addEventListener('click', async () => {
 $('logout').addEventListener('click', () => {
   if (dirty && !confirm('Sign out and discard your unsaved edits?')) return;
   key = ''; revision = 0; dirty = false; venues = []; savedEvents = [];
-  $('events').replaceChildren(); $('venue-list').replaceChildren(); $('venue-count').textContent = ''; $('key').value = '';
+  $('events').replaceChildren(); $('past-events').replaceChildren(); $('venue-list').replaceChildren(); $('venue-count').textContent = ''; $('key').value = '';
   $('manager').hidden = true; $('login-panel').hidden = false;
   message('Signed out.'); $('key').focus();
 });

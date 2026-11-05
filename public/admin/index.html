@@ -24,9 +24,14 @@
     <section id="manager" hidden>
       <div class="toolbar"><h2>Your schedule</h2><button id="logout" class="secondary">Sign out</button></div>
       <p class="hint">Confirmed shows appear on the site through the end of their date, using Pacific time. Venue names can be left blank until announced. Other statuses stay off the public schedule. Past shows remain here for your records.</p>
-      <p class="hint">Past shows stay in this schedule. The download includes saved past shows and private booking notes. Keep it private.</p>
-      <button id="download-past" class="secondary" type="button">Download past shows (CSV)</button>
+      <h3>Upcoming shows</h3>
       <div id="events"></div>
+      <details id="past-shows">
+        <summary>Past shows</summary>
+        <p class="hint">The download includes saved past shows and private booking notes. Keep it private.</p>
+        <button id="download-past" class="secondary" type="button">Download past shows (CSV)</button>
+        <div id="past-events"></div>
+      </details>
       <details id="venue-manager">
         <summary>Manage venues (<span id="venue-count">0 saved venues</span>)</summary>
         <p class="hint">Saved venues stay available after shows are removed. Edit or delete them here, then select Save schedule. Existing shows keep their own details.</p>
