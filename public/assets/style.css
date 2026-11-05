@@ -38,7 +38,14 @@
  .home .intro{width:100%;position:relative}
  .home .intro{background:none;color:var(--cream);padding:24px 0;isolation:isolate}
  .home .intro::before{content:"";position:absolute;inset:-32px -22px -56px;z-index:-1;background:linear-gradient(#211713ed,#211713b3 65%,#21171300)}
- .home .logo{filter:brightness(0) invert(1)}
+ .home .intro h1 {
+   background-color: currentColor;
+   mask: url('heading-south-western.svg') center / contain no-repeat;
+ }
+
+ .home .logo {
+   opacity: 0;
+ }
  .home .description{font-size:17px;font-weight:normal;line-height:1.5;text-shadow:0 1px 8px #0008}
 }
 
