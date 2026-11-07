@@ -34,3 +34,7 @@ The original client image and previous served derivative remain unchanged. The o
 The relit revision uses the approved generated wallpaper as the composition reference, with the sun outside the right edge, no horizon hotspot, and matching light on the road and sign. Its generated source is `output/imagegen/heading-south-road-west-light.png`; the concept uses the compressed `public/assets/road-west-light.webp`. The previous 4K master is retained.
 
 `public/assets/heading-south-distressed.svg` retains the supplied Heading South outlines with a light irregular ink edge treatment. The supplied Zach Bryan wordmark PDF was used only as a style reference. The standalone SVG is transparent and contains only the Heading South artwork.
+
+## Client-supplied logo — November 7, 2026
+
+The homepage uses the client-supplied `HeadingSouthLogo.svg`, copied unchanged to `public/assets/heading-south-logo.svg`. Its vector artwork replaces the previous western wordmark. The existing mobile ivory treatment uses the same SVG as a mask. The supporting “A celebration of the music and spirit of Zach Bryan” line was removed at the client’s request.
