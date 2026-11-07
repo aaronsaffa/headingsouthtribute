@@ -6,11 +6,19 @@ function text(tag, value, className) {
   if (className) element.className = className;
   return element;
 }
-function link(label, url) {
-  const element = text('a', label);
+function link(label, url, primary = false) {
+  const element = text('a', label, `show-action${primary ? ' show-action-primary' : ''}`);
   element.href = url; element.target = '_blank'; element.rel = 'noopener noreferrer';
   element.setAttribute('aria-label', `${label} (opens in a new tab)`);
+  const arrow = text('span', '↗'); arrow.setAttribute('aria-hidden', 'true');
+  element.append(arrow);
   return element;
+}
+function showActions(event) {
+  const links = document.createElement('div'); links.className = 'show-links';
+  if (event.map_url) links.append(link('Get directions', event.map_url));
+  if (event.tickets_url) links.append(link('Tickets / details', event.tickets_url, true));
+  return links;
 }
 function render(events) {
   const upcoming = upcomingEvents(events);
@@ -26,10 +34,7 @@ function render(events) {
       if (event.venue) card.append(text('p', event.venue, 'show-venue'));
       card.append(text('p', event.city));
       if (event.notes) card.append(text('p', event.notes, 'show-notes'));
-      const links = document.createElement('div'); links.className = 'show-links';
-      if (event.map_url) links.append(link('Map', event.map_url));
-      if (event.tickets_url) links.append(link('Tickets / details', event.tickets_url));
-      card.append(links); list.append(card);
+      card.append(showActions(event)); list.append(card);
     }
   }
   const debut = document.querySelector('.debut');
@@ -40,6 +45,7 @@ function render(events) {
       const event = upcoming[0], paragraph = document.createElement('p');
       const date = text('time', formatDate(event.date)); date.dateTime = event.date;
       paragraph.append(date); debut.append(paragraph, text('p', [event.venue, event.city].filter(Boolean).join(' · ')));
+      debut.append(showActions(event));
       debut.append(Object.assign(text('a', 'All shows →'), { href: 'events.html' }));
     } else debut.append(text('p', 'More shows coming soon.'));
   }
