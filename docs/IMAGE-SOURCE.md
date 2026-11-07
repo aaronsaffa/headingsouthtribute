@@ -38,3 +38,9 @@ The relit revision uses the approved generated wallpaper as the composition refe
 ## Client-supplied logo — November 7, 2026
 
 The homepage uses the client-supplied `HeadingSouthLogo.svg`, copied unchanged to `public/assets/heading-south-logo.svg`. Its vector artwork replaces the previous western wordmark. The existing mobile ivory treatment uses the same SVG as a mask. The supporting “A celebration of the music and spirit of Zach Bryan” line was removed at the client’s request.
+
+## Golden-orange wallpaper — November 7, 2026
+
+At the client's request, the built-in image generation tool edited `output/imagegen/heading-south-road-west-light.png` to reduce purple/mauve and emphasize golden-orange sunset tones. The new source is `output/imagegen/heading-south-road-golden-orange.png` (1672 × 941), served as `public/assets/road-golden-orange.webp` (quality 85, 311,848 bytes). All seven public pages preload the same wallpaper used by the shared stylesheet. The previous wallpaper is retained.
+
+Prompt: Change only the color grading and lighting palette to a golden/orange sunset, substantially reducing purple, pink and mauve in the sky and shadows. Use natural honey gold, amber, burnt orange and warm peach, with photographic tonal depth and golden reflections on asphalt, grasses and the weathered sign. Preserve composition, road geometry, horizon, cloud shapes, fields, trees, utility poles and wires, sign position, texture, lettering and arrow. Keep the sun outside the right frame; no new sun disk or horizon hotspot. Preserve wide framing and upper-left space for the separate website logo. No added objects, typography or watermark.
