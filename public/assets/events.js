@@ -10,14 +10,22 @@ function link(label, url, primary = false) {
   const element = text('a', label, `show-action${primary ? ' show-action-primary' : ''}`);
   element.href = url; element.target = '_blank'; element.rel = 'noopener noreferrer';
   element.setAttribute('aria-label', `${label} (opens in a new tab)`);
-  const arrow = text('span', '↗'); arrow.setAttribute('aria-hidden', 'true');
+  const arrow = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+  arrow.setAttribute('viewBox', '0 0 24 24');
+  arrow.setAttribute('width', '16'); arrow.setAttribute('height', '16');
+  arrow.setAttribute('fill', 'none'); arrow.setAttribute('stroke', 'currentColor');
+  arrow.setAttribute('stroke-width', '1.8');
+  arrow.setAttribute('stroke-linecap', 'round'); arrow.setAttribute('stroke-linejoin', 'round');
+  arrow.setAttribute('aria-hidden', 'true'); arrow.setAttribute('focusable', 'false');
+  const path = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+  path.setAttribute('d', 'M7 17 17 7M7 7h10v10'); arrow.append(path);
   element.append(arrow);
   return element;
 }
 function showActions(event) {
   const links = document.createElement('div'); links.className = 'show-links';
-  if (event.map_url) links.append(link('Get directions', event.map_url));
-  if (event.tickets_url) links.append(link('Tickets / details', event.tickets_url, true));
+  if (event.map_url) links.append(link('Map', event.map_url));
+  if (event.tickets_url) links.append(link('Tickets', event.tickets_url, true));
   return links;
 }
 function render(events) {
