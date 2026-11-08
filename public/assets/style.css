@@ -9,7 +9,7 @@
 
 .show-card+.show-card{border-top:1px solid #fff1d84d;margin-top:28px;padding-top:8px}.show-venue{font-weight:bold}.show-notes{white-space:pre-wrap;overflow-wrap:anywhere}.show-links{display:flex;gap:24px;flex-wrap:wrap}.debut>a{display:inline-block;font-size:13px;margin-top:10px;text-underline-offset:4px}#schedule-status{font-size:13px;color:#edb276}
 
-.show-links{gap:12px;margin-top:18px}.show-links:empty{display:none}
+.show-links{display:grid;grid-template-columns:repeat(2,144px);gap:12px;margin-top:18px}.show-links:empty{display:none}
 .show-links .show-action{display:inline-flex;align-items:center;justify-content:space-between;gap:18px;min-height:44px;padding:12px 16px;border:1px solid var(--amber);border-radius:4px;color:var(--cream);background:var(--ink);font:600 14px/1.3 Arial,Helvetica,sans-serif;text-decoration:none}
 .show-action svg{display:block;flex:none}
 .show-links .show-action-primary{background:var(--amber);color:var(--ink)}
@@ -27,7 +27,7 @@
  header{position:fixed;top:0;left:0;right:0;margin:0;padding:env(safe-area-inset-top) max(22px,env(safe-area-inset-right)) 0 max(22px,env(safe-area-inset-left));background:#211713;z-index:10;border-bottom:1px solid #fff1d824}
  .mobile-bar{height:64px;display:flex;align-items:center;justify-content:space-between;gap:20px}
  .mobile-brand{display:flex;align-items:center;width:220px;max-width:calc(100% - 64px);min-height:44px;text-decoration:none}
- .mobile-brand img{display:block;width:100%;height:auto;filter:brightness(0) invert(1)}
+ .mobile-brand img{display:block;width:100%;height:auto}
  .nav-ready .menu-toggle{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:5px;width:44px;height:44px;border:1px solid #fff1d84d;background:transparent;color:var(--cream);cursor:pointer;border-radius:50%}
  .menu-toggle span{display:block;width:18px;height:1px;background:currentColor;transition:transform .25s ease,opacity .2s ease}
  .menu-toggle:focus-visible{outline:3px solid var(--amber);outline-offset:3px}
@@ -47,17 +47,9 @@
  .show-links{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
  .show-links .show-action{justify-content:center;gap:8px;min-width:0;min-height:44px;padding:10px;font-size:13px;white-space:nowrap}
  .show-links .show-action:only-child{grid-column:1 / -1}
- .home .intro{width:100%;position:relative}
- .home .intro{background:none;color:var(--cream);padding:24px 0;isolation:isolate}
- .home .intro::before{content:"";position:absolute;inset:-32px -22px -56px;z-index:-1;background:linear-gradient(#211713ed,#211713b3 65%,#21171300)}
- .home .intro h1 {
-   background-color: currentColor;
-   mask: url('heading-south-logo.svg') center / contain no-repeat;
- }
+ /* Keep the page heading accessible without repeating the header logo. */
+ .home .intro{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip-path:inset(50%);white-space:nowrap}
 
- .home .logo {
-   opacity: 0;
- }
 }
 
 /* Keep the shared photograph painted across same-origin document changes. */
