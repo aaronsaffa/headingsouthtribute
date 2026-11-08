@@ -43,7 +43,7 @@
  nav a{font-size:13px;letter-spacing:.16em;padding:16px 4px;border-bottom:1px solid #fff1d81f}
  nav a[aria-current]{color:var(--amber);border-color:#fff1d81f}
  .home main{padding-top:24px;justify-content:flex-start;gap:clamp(24px,8svh,80px)}
- .home .details{padding:20px;gap:20px}
+ .home .details{padding:20px;gap:20px;background:rgba(24,16,13,.9)}
  .show-links{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
  .show-links .show-action{justify-content:center;gap:8px;min-width:0;min-height:44px;padding:10px;font-size:13px;white-space:nowrap}
  .show-links .show-action:only-child{grid-column:1 / -1}
