@@ -55,6 +55,8 @@ Revision verification: visually reviewed at 1280 x 720 and 390 x 844; tested Eve
 
 The protected show and venue manager is at /admin/. Events and the homepage read the shared schedule. See docs/SHOW-MANAGER.md for the client workflow and separate Cloudflare preview/production setup. The database binding and encrypted manager secret must be configured before live saving works. Run node --test tests/events.test.js for API regression checks.
 
+The expanded Site Manager on `codex/site-manager` adds Gallery, Music, and Site Details. Run `npm start`, open http://127.0.0.1:4173/admin/, and choose **Explore preview** to try browser-only drafts without a key. Gallery publishing awaits R2; music/text saves use a separate D1 content table. See [docs/SITE-MANAGER.md](docs/SITE-MANAGER.md) for setup and limits.
+
 ## Mobile presentation
 
 The approved mobile treatment uses a light wordmark over a dark photo gradient. A fixed hamburger header expands into vertical navigation with a 320 ms clipping reveal that keeps links stationary; reduced-motion preferences disable animation. The background uses a stable large viewport height to avoid rescaling as mobile browser toolbars collapse. Actual iOS toolbar and rubber-band behavior requires device verification.

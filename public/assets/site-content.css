@@ -1,0 +1,6 @@
+.managed-content { max-width: 760px; margin-inline: auto; text-align: left; overflow-wrap: anywhere; line-height: 1.8; }
+.managed-content article { background: #211713e8; border: 1px solid #9e754f; border-radius: 8px; padding: 24px; margin: 24px 0; }
+.managed-content h3 { margin-top: 0; }
+.managed-content button { color: #211713; background: #e0ad66; border: 1px solid #e0ad66; border-radius: 4px; padding: 12px 18px; cursor: pointer; font: 600 1rem system-ui, sans-serif; }
+.managed-content :focus-visible { outline: 3px solid #fff1d8; outline-offset: 4px; }
+.music-player { border: 0; width: 100%; height: 166px; margin-top: 16px; }

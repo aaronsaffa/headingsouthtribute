@@ -1,9 +1,11 @@
 import { STATUSES, todayInZone, validateEvents, validateVenues, seedVenues, venueKey } from '../assets/events-core.js';
 
 import { pastShowsCsv } from './archive.js';
+import { initContentManager } from './content-manager.js';
 
 const $ = id => document.getElementById(id);
 let key = '', revision = 0, dirty = false, busy = false, venues = [], savedEvents = [];
+const contentManager = initContentManager({ getKey: () => key });
 const message = value => { $('message').textContent = value; };
 const changed = () => { dirty = true; message('Unsaved changes. Select Save schedule to save shows and venues.'); };
 
@@ -162,11 +164,13 @@ async function load() {
   renderVenues(); dirty = false;
   $('login-panel').hidden = true; $('manager').hidden = false;
   message(result.events === null ? 'Starting schedule loaded. Save it to activate the show manager.' : 'Saved schedule and venues loaded.');
+  await contentManager.open(false);
 }
 
 function setBusy(value) {
   busy = value;
-  document.querySelectorAll('button, input, textarea, select').forEach(element => { element.disabled = value; });
+  document.querySelectorAll('#login-panel button, #login-panel input, #schedule-editor button, #schedule-editor input, #schedule-editor textarea, #schedule-editor select, #logout').forEach(element => { element.disabled = value; });
+  if (!value) contentManager.refresh();
 }
 
 $('login-form').addEventListener('submit', async event => {
@@ -235,12 +239,15 @@ $('download-past').addEventListener('click', () => {
 });
 $('reload').addEventListener('click', async () => {
   if (dirty && !confirm('Discard your unsaved show and venue edits and reload?')) return;
+  if (!contentManager.canLeave()) return;
   setBusy(true);
   try { await load(); } catch (error) { message(error.message); }
   finally { setBusy(false); }
 });
 $('logout').addEventListener('click', () => {
   if (dirty && !confirm('Sign out and discard your unsaved edits?')) return;
+  if (!contentManager.canLeave()) return;
+  contentManager.close();
   key = ''; revision = 0; dirty = false; venues = []; savedEvents = [];
   $('events').replaceChildren(); $('past-events').replaceChildren(); $('venue-list').replaceChildren(); $('venue-count').textContent = ''; $('key').value = '';
   $('manager').hidden = true; $('login-panel').hidden = false;

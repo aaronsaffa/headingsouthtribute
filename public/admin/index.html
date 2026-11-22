@@ -4,25 +4,37 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="robots" content="noindex, nofollow">
-  <title>Show Manager | Heading South</title>
+  <title>Site Manager | Heading South</title>
   <link rel="stylesheet" href="/admin/style.css">
   <script type="module" src="/admin/admin.js"></script>
 </head>
 <body>
   <main>
     <header><a href="/">HEADING SOUTH</a><span>BACKSTAGE</span></header>
-    <h1>Show manager</h1>
-    <p class="intro">Keep the road ahead up to date. Add a show, check the details, then save your schedule.</p>
+    <p class="eyebrow">THE BAND. THE SHOWS. THE STORY.</p>
+    <h1>Site manager</h1>
+    <p class="intro">Your corner of the internet, kept up to date. Manage the schedule, share new music, and tell your story.</p>
     <section id="login-panel">
       <form id="login-form">
         <label for="key">Manager sign-in key</label>
         <div class="login-row"><input id="key" type="password" autocomplete="current-password" required><button>Sign in</button></div>
         <p class="hint">Use the private key set up for this site. Your key stays in memory and is cleared when you reload or sign out.</p>
       </form>
+      <div class="preview-entry"><button id="explore" type="button" class="secondary">Explore preview</button><p class="hint">Try Gallery, Music, and Site Details without signing in. Preview drafts stay in this browser and never change the website.</p></div>
     </section>
     <p id="message" role="status" aria-live="polite"></p>
     <section id="manager" hidden>
-      <div class="toolbar"><h2>Your schedule</h2><button id="logout" class="secondary">Sign out</button></div>
+      <div class="toolbar"><span id="workspace-mode" class="badge">MANAGER</span><div class="actions compact"><a href="/" target="_blank" rel="noopener">View website</a><button id="logout" class="secondary">Sign out</button></div></div>
+      <nav class="manager-nav" aria-label="Manager sections">
+        <button data-panel="schedule" aria-current="page" class="secondary">Shows</button>
+        <button data-panel="gallery" class="secondary">Gallery</button>
+        <button data-panel="music" class="secondary">Music</button>
+        <button data-panel="details" class="secondary">Site details</button>
+      </nav>
+      <div id="schedule-panel" class="manager-panel">
+      <h2>Your schedule</h2>
+      <p id="schedule-preview-note" class="notice" hidden>Shows use the existing protected manager. Sign in to load and update your actual schedule.</p>
+      <div id="schedule-editor">
       <p class="hint">Confirmed shows appear on the site through the end of their date, using Pacific time. Venue names can be left blank until announced. Other statuses stay off the public schedule. Past shows remain here for your records.</p>
       <h3>Upcoming shows</h3>
       <div id="events"></div>
@@ -39,7 +51,32 @@
       </details>
       <div class="actions"><button id="add" class="secondary">+ Add show</button><button id="save">Save schedule</button><button id="reload" class="secondary">Reload saved schedule</button></div>
       <p class="hint">Saving updates the website within about an hour for visitors with the page open, or when they return to the tab. Reloading discards unsaved edits.</p>
+      </div></div>
+      <div id="gallery-panel" class="manager-panel" hidden>
+        <div class="section-heading"><div><p class="eyebrow">MOMENTS FROM THE ROAD</p><h2>Your gallery</h2></div><span id="gallery-count" class="badge">0 photos</span></div>
+        <p class="notice">Gallery preview · Photo storage is not connected yet. You can arrange photos and save a draft in this browser. Nothing is uploaded or published.</p>
+        <label class="upload-zone" for="gallery-files"><strong>Add your photos</strong><span>Choose multiple JPG, PNG, or WebP images · up to 12 MB each</span><input id="gallery-files" type="file" accept="image/jpeg,image/png,image/webp" multiple></label>
+        <div id="gallery-list" class="gallery-list"></div>
+        <div id="gallery-empty" class="empty-state"><span class="empty-symbol" aria-hidden="true">▧</span><h3>Make room for the memories.</h3><p>Band photos, moments backstage, nights on stage. Add the photos you want people to see.</p></div>
+        <div class="actions"><button id="gallery-save" type="button">Save browser draft</button><button id="gallery-preview" class="secondary" type="button">Preview gallery</button><button type="button" disabled title="Connect photo storage to enable publishing">Publish gallery · storage required</button></div>
+        <p class="hint">Drafts are stored on this device only. Keep your original photos; clearing browser data removes the draft. Photos are resized for the preview.</p>
+      </div>
+      <div id="music-panel" class="manager-panel" hidden>
+        <div class="section-heading"><div><p class="eyebrow">TURN IT UP</p><h2>Your music</h2></div><button id="music-add" class="secondary" type="button">+ Add music</button></div>
+        <p class="hint">Paste a public SoundCloud track or playlist link. Set the order, preview the player, and publish when you're ready.</p>
+        <div id="music-list"></div>
+        <div id="music-empty" class="empty-state"><span class="empty-symbol" aria-hidden="true">♫</span><h3>Give them something to listen to.</h3><p>Add your first SoundCloud track or playlist. Your audio stays on SoundCloud.</p></div>
+        <div data-content-actions="music"></div>
+      </div>
+      <div id="details-panel" class="manager-panel" hidden>
+        <p class="eyebrow">THE LITTLE THINGS THAT MATTER</p><h2>Site details</h2>
+        <p class="hint">A few simple fields for the pages that change less often. Each section saves and publishes separately.</p>
+        <details class="detail-editor" open><summary>About the band</summary><label>Band biography<textarea id="about-text" maxlength="12000" rows="8" placeholder="Add the band's approved biography."></textarea></label><p class="hint">Use blank lines between paragraphs. The site's typography and layout are handled for you.</p><div data-content-actions="about"></div></details>
+        <details class="detail-editor"><summary>Contact details</summary><p class="hint">These fields are public. Add only the contact details you want visitors to use.</p><label>Introduction<textarea id="contact-intro" maxlength="3000"></textarea></label><div class="grid"><label>Public email<input id="contact-email" type="email" maxlength="254" autocomplete="off"></label><label>Public phone (optional)<input id="contact-phone" type="tel" maxlength="50" autocomplete="off"></label></div><div data-content-actions="contact"></div></details>
+        <details class="detail-editor"><summary>Follow &amp; social links</summary><p class="hint">Leave a link blank to hide it. Social links use HTTPS.</p><div id="social-fields" class="grid"></div><div data-content-actions="follow"></div></details>
+      </div>
     </section>
+    <dialog id="content-preview" aria-labelledby="preview-title"><div class="toolbar"><h2 id="preview-title">Content preview</h2><button id="preview-close" class="secondary" type="button">Close preview</button></div><p class="hint">Draft preview. This has not been published. SoundCloud players load only when selected.</p><div id="preview-body"></div></dialog>
     <footer>HEADING SOUTH - A TRIBUTE TO ZACH BRYAN</footer>
   </main>
 </body>

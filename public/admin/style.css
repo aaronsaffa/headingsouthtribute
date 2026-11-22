@@ -36,3 +36,63 @@ summary { cursor: pointer; color: #e0ad66; font-weight: 700; }
 select { min-width: 0; max-width: 100%; }
 
 :root{background:#211713;color:#fff1d8}section{background:#2a1e19}article{background:#211713}
+
+main { max-width: 1120px; }
+.eyebrow { font-size: .75rem; letter-spacing: .16em; font-weight: 700; color: #dfae76; margin: 30px 0 12px; }
+h1 { margin-top: 0; }
+header { align-items: center; }
+header a { font-size: 1rem; }
+.intro { font-size: 1rem; }
+#manager { padding: 0; overflow: hidden; }
+#manager > .toolbar { padding: 20px 28px; background: #211713; }
+.compact { margin: 0; }
+.compact a { font-size: .875rem; }
+.badge { display: inline-block; color: #e8bd89; border: 1px solid #745339; border-radius: 30px; padding: 6px 12px; font-size: .75rem; letter-spacing: .06em; }
+.manager-nav { display: flex; gap: 6px; padding: 12px 20px; border-block: 1px solid #674936; background: #211713; flex-wrap: wrap; }
+.manager-nav button { border-color: transparent; flex: 1; min-width: 100px; }
+.manager-nav [aria-current="page"] { background: #e0ad66; color: #211713; }
+.manager-panel { padding: 28px; }
+.section-heading { display: flex; gap: 16px; justify-content: space-between; align-items: center; flex-wrap: wrap; margin-bottom: 22px; }
+.section-heading h2 { margin: 6px 0; }
+.section-heading .eyebrow, .manager-panel > .eyebrow { margin-top: 0; }
+.notice { border-left: 3px solid #e0ad66; background: #35271e; padding: 16px 20px; color: #e8d4ba; font-size: .875rem; line-height: 1.7; }
+.preview-entry { border-top: 1px solid #674936; margin-top: 24px; padding-top: 24px; display: flex; gap: 24px; align-items: center; flex-wrap: wrap; }
+.preview-entry p { flex: 1; min-width: 200px; margin: 0; }
+.upload-zone { border: 1px dashed #b58a5d; border-radius: 8px; text-align: center; padding: 30px; margin-top: 26px; background: #241a15; cursor: pointer; }
+.upload-zone strong { font: bold 1.5rem Georgia, serif; display: block; }
+.upload-zone span { display: block; margin: 10px 0 20px; color: #c5b6a6; font-weight: 400; }
+.upload-zone input { max-width: 420px; margin-inline: auto; }
+.empty-state { text-align: center; padding: 40px 16px; color: #c5b6a6; }
+.empty-state h3 { color: #fff1d8; font: bold 1.5rem Georgia, serif; }
+.empty-state p { max-width: 420px; margin-inline: auto; line-height: 1.7; }
+.empty-symbol { font-size: 2.4rem; color: #dfae76; }
+.gallery-list { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 20px; }
+.gallery-list article { margin-bottom: 0; min-width: 0; }
+.gallery-list img { width: 100%; height: 210px; object-fit: cover; border-radius: 4px; }
+.check { display: flex; align-items: center; gap: 10px; margin-top: 18px; }
+.check input { width: 18px; height: 18px; margin: 0; flex: none; accent-color: #e0ad66; }
+.card-actions { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 18px; }
+.card-actions button { padding: 9px 12px; font-size: .8rem; }
+.detail-editor { padding: 24px 0; border-bottom: 1px solid #674936; }
+.detail-editor summary { font: bold 1.4rem Georgia, serif; }
+.detail-editor label { margin-top: 22px; }
+.content-state { color: #e8bd89; font-size: .875rem; min-height: 1.5em; margin-bottom: 0; }
+button:disabled { cursor: not-allowed; }
+dialog { color: #fff1d8; background: #211713; border: 1px solid #9e754f; border-radius: 12px; padding: 28px; width: min(900px, calc(100% - 28px)); max-height: 90vh; }
+dialog::backdrop { background: #080605dc; }
+#preview-body { margin-top: 30px; line-height: 1.8; overflow-wrap: anywhere; }
+.public-music article, #preview-body article { background: #211713; border: 1px solid #745339; padding: 20px; border-radius: 8px; margin: 18px 0; }
+.music-player { border: 0; width: 100%; height: 166px; margin-top: 16px; }
+.photo-preview-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; }
+.photo-preview-grid figure { margin: 0; }
+.photo-preview-grid img { width: 100%; border-radius: 6px; }
+.photo-preview-grid figcaption { color: #c5b6a6; font-size: .875rem; }
+@media (max-width: 600px) {
+  main { padding: 20px 16px; }
+  #manager > .toolbar, .manager-panel { padding: 20px 16px; }
+  .manager-nav { padding: 10px; gap: 4px; }
+  .manager-nav button { min-width: 0; padding: 12px 6px; font-size: .8rem; }
+  .gallery-list, .photo-preview-grid { grid-template-columns: minmax(0, 1fr); }
+  .upload-zone { padding: 24px 12px; }
+  .badge { font-size: .7rem; }
+}
