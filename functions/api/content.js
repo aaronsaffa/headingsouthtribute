@@ -8,6 +8,7 @@ export async function onRequest({ request, env }) {
   if ((admin || request.method === 'PUT') && !await authorized(request, env.ADMIN_TOKEN)) return json({ error: 'Sign in with the manager key.' }, 401);
   if (!env.EVENTS_DB) return json({ error: 'Content storage is not connected. See docs/SITE-MANAGER.md.' }, 503);
   try {
+    if (admin || request.method === 'PUT') await env.EVENTS_DB.prepare("CREATE TABLE IF NOT EXISTS site_content (section TEXT PRIMARY KEY CHECK (section IN ('music', 'about', 'contact', 'follow')), draft TEXT NOT NULL, published TEXT, previous TEXT, revision INTEGER NOT NULL DEFAULT 1)").run();
     if (request.method === 'GET') {
       const sections = {};
       for (const section of SECTIONS) {

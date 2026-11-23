@@ -1,0 +1,5 @@
+CREATE TABLE IF NOT EXISTS gallery_state (
+  id INTEGER PRIMARY KEY CHECK (id = 1),
+  gallery TEXT NOT NULL,
+  revision INTEGER NOT NULL DEFAULT 1
+);

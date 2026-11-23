@@ -185,7 +185,7 @@ $('add').addEventListener('click', () => {
 });
 $('save').addEventListener('click', async () => {
   if (busy) return;
-  for (const field of $('manager').querySelectorAll('input, textarea, select')) {
+  for (const field of $('schedule-editor').querySelectorAll('input, textarea, select')) {
     if (!field.checkValidity()) {
       const details = field.closest('details'); if (details) details.open = true;
       field.reportValidity(); return;

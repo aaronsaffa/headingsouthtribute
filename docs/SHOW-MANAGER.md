@@ -39,4 +39,4 @@ The same schedule database retains dated shows after they pass. In the signed-in
 
 Use **Private booking notes (manager only)** for booking contacts and other internal details. Use **Public show details** for visitor-facing information. The public endpoint uses an explicit field allowlist and never includes private notes. Existing records default to blank private notes; no D1 migration is needed. Reload open manager tabs after deploying.
 
-The development branch `codex/site-manager` expands the manager with Music and Site Details editors plus a browser-only Gallery draft workflow. See [SITE-MANAGER.md](SITE-MANAGER.md) for the separate content schema and deferred photo storage. Schedule storage is unchanged.
+The development branch `codex/site-manager` expands the manager with Music and Site Details editors plus R2 gallery publishing and browser drafts. See [SITE-MANAGER.md](SITE-MANAGER.md) for the separate content tables and environment-specific photo storage. Schedule storage is unchanged.

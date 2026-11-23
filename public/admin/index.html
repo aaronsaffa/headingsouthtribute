@@ -54,12 +54,13 @@
       </div></div>
       <div id="gallery-panel" class="manager-panel" hidden>
         <div class="section-heading"><div><p class="eyebrow">MOMENTS FROM THE ROAD</p><h2>Your gallery</h2></div><span id="gallery-count" class="badge">0 photos</span></div>
-        <p class="notice">Gallery preview · Photo storage is not connected yet. You can arrange photos and save a draft in this browser. Nothing is uploaded or published.</p>
+        <p id="gallery-notice" class="notice">Arrange your photos, add descriptions, then publish the batch. Visitors see the updated gallery the next time they load the page.</p>
         <label class="upload-zone" for="gallery-files"><strong>Add your photos</strong><span>Choose multiple JPG, PNG, or WebP images · up to 12 MB each</span><input id="gallery-files" type="file" accept="image/jpeg,image/png,image/webp" multiple></label>
         <div id="gallery-list" class="gallery-list"></div>
         <div id="gallery-empty" class="empty-state"><span class="empty-symbol" aria-hidden="true">▧</span><h3>Make room for the memories.</h3><p>Band photos, moments backstage, nights on stage. Add the photos you want people to see.</p></div>
-        <div class="actions"><button id="gallery-save" type="button">Save browser draft</button><button id="gallery-preview" class="secondary" type="button">Preview gallery</button><button type="button" disabled title="Connect photo storage to enable publishing">Publish gallery · storage required</button></div>
-        <p class="hint">Drafts are stored on this device only. Keep your original photos; clearing browser data removes the draft. Photos are resized for the preview.</p>
+        <div class="actions"><button id="gallery-save" type="button">Save browser draft</button><button id="gallery-preview" class="secondary" type="button">Preview gallery</button><button id="gallery-publish" type="button" disabled>Publish gallery</button><button id="gallery-reload" class="secondary" type="button">Reload saved gallery</button><button id="gallery-check" class="secondary" type="button" hidden>Check publication</button></div>
+        <p id="gallery-status" class="content-state" data-state="gallery" role="status">Sign in or explore preview to begin.</p>
+        <p class="hint">Browser drafts stay on this device. Publish up to 10 new photos at a time, with up to 100 in the gallery. Keep your original photos separately. Removing a photo from the gallery does not erase the stored file.</p>
       </div>
       <div id="music-panel" class="manager-panel" hidden>
         <div class="section-heading"><div><p class="eyebrow">TURN IT UP</p><h2>Your music</h2></div><button id="music-add" class="secondary" type="button">+ Add music</button></div>

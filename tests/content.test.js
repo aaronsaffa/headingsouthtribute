@@ -74,3 +74,15 @@ test('missing content schema fails safely without changing schedule storage', as
   assert.equal(response.status, 503);
   assert.match((await response.json()).error, /content-schema.sql/);
 });
+
+test('authenticated manager initializes its content table without modifying the schedule', async () => {
+  const { db, request } = fixture();
+  try {
+    db.exec("DROP TABLE site_content; CREATE TABLE schedule (id INTEGER PRIMARY KEY, events TEXT); INSERT INTO schedule VALUES (1, 'fixture-existing-schedule');");
+    const result = await request({ admin: true });
+    assert.equal(result.status, 200);
+    assert.equal(result.data.sections.about.revision, 0);
+    assert.equal(db.prepare('SELECT events FROM schedule WHERE id = 1').get().events, 'fixture-existing-schedule');
+    assert.equal((await request({ token: '' })).status, 200);
+  } finally { db.close(); }
+});
